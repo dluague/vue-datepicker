@@ -1,10 +1,11 @@
 import { addMonths, subMonths, differenceInCalendarMonths } from 'date-fns';
 import CalendarPanel from './calendar-panel';
+import RangePresets from './range-presets';
 import { getValidDate, isValidDate, isValidRangeDate } from '../util/date';
 
 export default {
   name: 'CalendarRange',
-  components: { CalendarPanel },
+  components: { CalendarPanel, RangePresets },
   inject: {
     prefixClass: {
       default: 'mx',
@@ -111,6 +112,10 @@ export default {
       }
       return classes;
     },
+    handlePresetSelected(selected) {
+      this.innerValue = [selected.from, selected.to];
+      this.emitDate(this.innerValue, 'date');
+    },
   },
   render() {
     const calendarRange = this.calendars.map((calendar, index) => {
@@ -131,7 +136,18 @@ export default {
     });
 
     const { prefixClass } = this;
+    const props = {
+      value: this.innerValue,
+    };
+    const on = {
+      selected: this.handlePresetSelected,
+    };
 
-    return <div class={`${prefixClass}-range-wrapper`}>{calendarRange}</div>;
+    return (
+      <div class={`${prefixClass}-range-wrapper`}>
+        {calendarRange}
+        <range-presets {...{ props, on }} />
+      </div>
+    );
   },
 };

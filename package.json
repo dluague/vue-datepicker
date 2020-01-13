@@ -1,17 +1,17 @@
 {
-  "name": "vue2-datepicker",
+  "name": "@dluague/vue-datepicker",
   "description": "A Datepicker Component For Vue2",
   "main": "index.js",
   "module": "index.esm.js",
   "alias": {
-    "vue2-datepicker": "./src/index.js"
+    "@dluague/vue-datepicker": "src/index.js"
   },
   "files": [
     "/locale",
     "/index.*",
     "/scss"
   ],
-  "version": "3.3.0",
+  "version": "3.3.2",
   "scripts": {
     "dev": "parcel ./example/dev.html --open --port 2235",
     "build:index": "cross-env NODE_ENV=production rollup -c",
